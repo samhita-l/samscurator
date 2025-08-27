@@ -1,0 +1,295 @@
+@import "materials/main.scss";
+
+// Variables
+$primary-color: #0095DD;
+$secondary-color: #a52c2cff;
+$background-dark: #000;
+$background-light: #fff;
+$text-color: #111;
+$border-color: #222;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$gold-color: gold;
+$orange-glow: orange;
+
+// Mixins
+@mixin button-style($bg-color: $background-light, $text-color: $text-color) {
+  margin: 5px;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid $border-color;
+  background: $bg-color;
+  cursor: pointer;
+  border-radius: 8px;
+  color: $text-color;
+  transition: all 0.3s ease;
+  
+  &:hover:not(:disabled) {
+    background: darken($bg-color, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px $shadow-color;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px $shadow-color;
+  }
+}
+
+@mixin info-card {
+  background: $background-dark;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 4px 16px $shadow-color;
+  border: 1px solid #333;
+}
+
+// Main Game Styles
+#gameCanvas {
+  background: $background-dark;
+  display: block;
+  margin: 0 auto;
+  border: 2px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 149, 221, 0.3);
+  
+  // Add subtle glow effect
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 20px rgba(0, 149, 221, 0.5);
+  }
+}
+
+// Controls Section
+.controls {
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px $shadow-color;
+  
+  // Button styles
+  #startBtn {
+    @include button-style();
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, #45a049, #3d8b40);
+    }
+  }
+  
+  #pauseBtn {
+    @include button-style();
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, #f57c00, #ef6c00);
+    }
+  }
+  
+  #resetBtn {
+    @include button-style($secondary-color, white);
+    background: linear-gradient(135deg, $secondary-color, darken($secondary-color, 10%));
+    
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, darken($secondary-color, 10%), darken($secondary-color, 20%));
+    }
+  }
+  
+  #nextLevelBtn {
+    @include button-style();
+    background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+    color: white !important;
+    display: none;
+    margin: 10px auto 0;
+    font-family: system-ui, Arial;
+    
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, #7B1FA2, #6A1B9A);
+    }
+  }
+}
+
+// Hack Challenges Section
+#hack1 {
+  max-width: 600px;
+  margin: 8px auto;
+  font-family: system-ui, Arial;
+  
+  h2 {
+    color: $primary-color;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px $shadow-color;
+  }
+  
+  // OOP Architecture Info Card
+  .oop-info {
+    @include info-card;
+    color: white;
+    
+    h3 {
+      color: $gold-color;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    ul {
+      margin: 8px 0 12px 20px;
+      
+      li {
+        margin-bottom: 8px;
+        line-height: 1.4;
+        
+        strong {
+          color: $primary-color;
+        }
+      }
+    }
+    
+    p strong {
+      color: $gold-color;
+    }
+  }
+  
+  // Hack sections
+  .hack-section {
+    @include info-card;
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    color: white;
+    margin-bottom: 1rem;
+    
+    p strong {
+      color: $gold-color;
+      font-size: 1.1rem;
+    }
+    
+    ul {
+      margin: 8px 0 12px 20px;
+      
+      li {
+        margin-bottom: 6px;
+        line-height: 1.4;
+        
+        code {
+          background: rgba(0, 149, 221, 0.2);
+          padding: 2px 6px;
+          border-radius: 4px;
+          color: $primary-color;
+          font-family: 'Courier New', monospace;
+        }
+      }
+    }
+  }
+  
+  // Special styling for different hack levels
+  #hack1-90, #hack2-90 {
+    @extend .hack-section;
+    border-left: 4px solid #4CAF50;
+  }
+  
+  #hack1-100, #hack2-100 {
+    @extend .hack-section;
+    border-left: 4px solid $gold-color;
+  }
+  
+  #oop-hacks {
+    @extend .hack-section;
+    border-left: 4px solid #9C27B0;
+    
+    p strong {
+      color: #E1BEE7;
+    }
+  }
+}
+
+// Information Section
+#information {
+  max-width: 600px;
+  margin: 8px auto;
+  font-family: system-ui, Arial;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px $shadow-color;
+  
+  h2 {
+    color: $primary-color;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px $shadow-color;
+  }
+  
+  p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    
+    strong {
+      color: darken($primary-color, 10%);
+    }
+  }
+  
+  ul {
+    margin: 8px 0 12px 20px;
+    
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+      
+      strong {
+        color: darken($primary-color, 15%);
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  #gameCanvas {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+  }
+  
+  .controls {
+    flex-wrap: wrap;
+    
+    button {
+      margin: 3px;
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+  }
+  
+  #hack1, #information {
+    margin: 8px 16px;
+    padding: 1rem;
+  }
+}
+
+// Animation for power-ups and special effects
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(0, 149, 221, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(0, 149, 221, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(0, 149, 221, 0.5); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
