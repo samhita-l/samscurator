@@ -1,5 +1,5 @@
 ---
-layout: base 
+layout: post 
 title: OOP Breakout Blocks
 author: Nikhil, Rohan, Pranav, Aditya, Shriya, Samhita
 permalink: oopbreakout
@@ -650,4 +650,4 @@ permalink: oopbreakout
   game.draw();
 </script>
 
-<p><a href="{{site.baseurl}}/breakoutLesson" style="text-decoration:none;color:#007acc;font-weight:bold;">Click here to read the full lesson</a></p>
+<p><a href="{{site.baseurl}}/oopbreakoutLesson" style="text-decoration:none;color:#007acc;font-weight:bold;">Click here to read the full lesson</a></p>
